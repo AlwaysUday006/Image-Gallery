@@ -13,11 +13,9 @@ body {
   box-sizing: border-box;
   position: relative;
   background: 
-    linear-gradient(120deg, #6ea5a9 0%, #5e789b 100%),
     url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
   background-repeat: repeat;
-  animation: fadeInBody 1s ease;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 body::before {
@@ -69,11 +67,23 @@ h1::after {
   margin-bottom: 40px;
 }
 
+.gallery figure {
+  background: rgba(255,255,255,0.35);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(102,166,255,0.10);
+  backdrop-filter: blur(4px);
+  padding: 10px;
+  transition: background 0.3s;
+}
+
+.gallery figure:hover {
+  background: rgba(255,255,255,0.55);
+}
+
 .gallery img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  cursor: pointer;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(102,166,255,0.12), 0 1.5px 6px rgba(0,0,0,0.08);
   border: 2px solid transparent;
@@ -90,10 +100,10 @@ h1::after {
 }
 
 .gallery img:hover {
-  transform: scale(1.07) rotate(-1deg);
-  box-shadow: 0 8px 32px rgba(102,166,255,0.25), 0 4px 16px rgba(0,0,0,0.12);
-  border-color: #66a6ff;
-  filter: brightness(1.08);
+  transform: scale(1.09) rotate(-2deg);
+  box-shadow: 0 12px 40px rgba(102,166,255,0.35), 0 8px 30px rgba(0,0,0,0.18);
+  border-color: #89f7fe;
+  filter: brightness(1.12) saturate(1.2);
 }
 
 .lightbox {
@@ -106,7 +116,6 @@ h1::after {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  cursor: zoom-out;
   transition: opacity 0.4s ease;
   opacity: 0;
 }
@@ -164,6 +173,71 @@ h1::after {
   letter-spacing: 1px;
 }
 
+.zoom-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(255,255,255,0.85);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 2rem;
+  color: #66a6ff;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin-left: 10px;
+  z-index: 10001;
+  transition: background 0.2s;
+}
+
+#zoom-out {
+  right: 76px;
+}
+
+.zoom-btn:hover {
+  background: #66a6ff;
+  color: #fff;
+}
+
+#slider-box {
+  /* Reserved for slider styling if needed */
+}
+
+#zoom-slider {
+  accent-color: #66a6ff;
+  height: 40px;
+  border-radius: 8px;
+  background: #fff;
+  outline: none;
+  box-shadow: none;
+}
+
+.download-btn {
+  display: inline-block;
+  margin: 10px auto 0 auto;
+  padding: 7px 18px;
+  background: linear-gradient(90deg, #66a6ff 0%, #89f7fe 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 22px;
+  box-shadow: 0 2px 8px rgba(102,166,255,0.15);
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.3s, transform 0.2s;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.download-btn:hover {
+  background: linear-gradient(90deg, #89f7fe 0%, #66a6ff 100%);
+  color: #222;
+  transform: translateY(-2px) scale(1.07);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.19);
+}
+
 @media (max-width: 700px) {
   .gallery {
     grid-template-columns: repeat(auto-fill, minmax(140px,1fr));
@@ -180,4 +254,9 @@ h1::after {
     height: 32px;
     font-size: 1.5rem;
   }
+}
+
+/* === Force black cursor everywhere === */
+* {
+  cursor: url('black-pointer.cur'), auto !important;
 }
